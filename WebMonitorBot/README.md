@@ -110,7 +110,6 @@ Despliegue
 
 Seguridad / buenas prácticas
 ---------------------------
-- Nunca subir appsettings.json con credenciales privadas a GitHub.
 - Restrinje el acceso al token del bot de Telegram y a la API de Deepseek.
 - Usa conexiones cifradas a SQL Server y credenciales gestionadas por el proveedor de despliegue cuando sea posible.
 
@@ -118,15 +117,3 @@ Contribuir
 ----------
 - Pull requests bien descritos y cambios pequeños son bienvenidos.
 - Mantén el estilo y convenciones del repositorio (C# idiomático, inyección de dependencias, uso de ILogger).
-
-Licencia
---------
-Incluye una licencia en la raíz del repositorio antes de publicar (por ejemplo MIT) si quieres permitir su uso público. Este README no incluye por defecto una licencia.
-
-Contacto
---------
-Abre issues en el repositorio de GitHub para reportar bugs, solicitar features o preguntar sobre la configuración y despliegue.
-
-Notas finales
--------------
-Este README ofrece una visión general suficiente para instalar, configurar y ejecutar WebMonitorBot. Revisa el código en /Bot, /Services y /Data para ampliar o personalizar comportamiento (por ejemplo, cambiar el extractor HTML, el cliente LLM o la persistencia).
