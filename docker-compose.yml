@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  webmonitor:
+    image: javieralvarezcu/webmonitorbot:latest
+    build:
+      context: ./WebMonitorBot
+      dockerfile: Dockerfile
+      args:
+        DOTNET_SDK_VERSION: ${DOTNET_SDK_VERSION:-10.0}
+        DOTNET_RUNTIME_VERSION: ${DOTNET_RUNTIME_VERSION:-10.0}
+      # platform: ${PLATFORM:-}
+    container_name: webmonitor
+    restart: unless-stopped
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      DEEPSEEK__APIURL: ${DEEPSEEK__APIURL:-https://api.deepseek.com/v1/chat}
+      DEEPSEEK__APIKEY: ${DEEPSEEK__APIKEY}
+      DATABASE_CONN: ${DATABASE_CONN}
+    networks:
+      - webnet
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  webnet:
+    driver: bridge

@@ -12,7 +12,7 @@ namespace WebMonitorBot.Data.EF
         public WebMonitorContext CreateDbContext(string[] args)
         {
             // Intentar leer la cadena de conexión de variable de entorno primero
-            var conn = Environment.GetEnvironmentVariable("WEBMONITORBOT_CONN");
+            var conn = Environment.GetEnvironmentVariable("DATABASE_CONN");
             if (string.IsNullOrEmpty(conn))
             {
                 // Intentar cargar appsettings.json desde el directorio del proyecto
@@ -28,7 +28,7 @@ namespace WebMonitorBot.Data.EF
             }
 
             if (string.IsNullOrEmpty(conn))
-                throw new InvalidOperationException("Connection string not found. Set WEBMONITORBOT_CONN or ConnectionStrings:Default in appsettings.json.");
+                throw new InvalidOperationException("Connection string not found. Set DATABASE_CONN or ConnectionStrings:Default in appsettings.json.");
 
             var optionsBuilder = new DbContextOptionsBuilder<WebMonitorContext>();
             optionsBuilder.UseSqlServer(conn);

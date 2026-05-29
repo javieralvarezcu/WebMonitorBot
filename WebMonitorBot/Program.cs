@@ -17,7 +17,7 @@ var builder = Host.CreateDefaultBuilder(args)
         services.AddHttpClient();
 
         // Registrar EF DbContext y repositorios
-        var conn = context.Configuration.GetConnectionString("Default") ?? Environment.GetEnvironmentVariable("WEBMONITORBOT_CONN") ?? "";
+        var conn = context.Configuration.GetConnectionString("Default") ?? Environment.GetEnvironmentVariable("DATABASE_CONN") ?? "";
         services.AddDbContext<WebMonitorBot.Data.EF.WebMonitorContext>(options => options.UseSqlServer(conn));
         services.AddScoped<IMonitoringRepository, EfMonitoringRepository>();
         services.AddScoped<EfWhitelistRepository>();
