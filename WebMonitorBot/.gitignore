@@ -1,0 +1,49 @@
+# Ignorar artefactos de compilación .NET
+bin/
+obj/
+
+# Visual Studio
+/.vs
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# JetBrains Rider
+.idea/
+
+# Paquetes NuGet y salida de publish
+packages/
+*.nupkg
+publish/
+
+# Resultados de tests
+TestResults/
+
+# Archivos de log
+*.log
+logs/
+
+# Bases de datos locales
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+# Ficheros de configuración y secretos / variables de entorno (no subir credenciales)
+secrets.json
+appsettings.*.Development.json
+appsettings.*.Local.json
+appsettings.*.Secret.json
+*.env
+.env*
+
+# Otros temporales y de sistema
+*.tmp
+*.temp
+Thumbs.db
+ehthumbs.db
+desktop.ini
