@@ -16,8 +16,8 @@ namespace WebMonitorBot.Services
         public DeepseekLlmClient(IConfiguration configuration, ILogger<DeepseekLlmClient> logger)
         {
             _logger = logger;
-            var apiKey = configuration["Deepseek:ApiKey"] ?? Environment.GetEnvironmentVariable("DEEPSEEK_API_KEY");
-            if (string.IsNullOrEmpty(apiKey)) throw new InvalidOperationException("Deepseek API key no configurada. Establece Deepseek:ApiKey o la variable DEEPSEEK_API_KEY.");
+            var apiKey = Environment.GetEnvironmentVariable("DEEPSEEK_API_KEY") ?? configuration["Deepseek:ApiKey"];
+            if (string.IsNullOrEmpty(apiKey)) throw new InvalidOperationException("Deepseek API key no configurada. Establece la variable de entorno DEEPSEEK_API_KEY.");
 
             _client = new DeepSeekClient(apiKey);
         }

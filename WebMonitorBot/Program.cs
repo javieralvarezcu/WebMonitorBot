@@ -13,11 +13,15 @@ using Telegram.Bot;
 var builder = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        // Telegram bot token must be set in configuration or environment variable: Telegram:BotToken or TELEGRAM_BOT_TOKEN
+        // Telegram bot token, DB connection and Deepseek API key must be provided via environment variables.
         services.AddHttpClient();
 
         // Registrar EF DbContext y repositorios
-        var conn = context.Configuration.GetConnectionString("Default") ?? Environment.GetEnvironmentVariable("DATABASE_CONN") ?? "";
+        var conn = Environment.GetEnvironmentVariable("DATABASE_CONN");
+        if (string.IsNullOrEmpty(conn))
+        {
+            throw new InvalidOperationException("Cadena de conexión no configurada. Establece la variable de entorno DATABASE_CONN.");
+        }
         services.AddDbContext<WebMonitorBot.Data.EF.WebMonitorContext>(options => options.UseSqlServer(conn));
         services.AddScoped<IMonitoringRepository, EfMonitoringRepository>();
         services.AddScoped<EfWhitelistRepository>();
@@ -30,10 +34,10 @@ var builder = Host.CreateDefaultBuilder(args)
         // Adapter para whitelist en DB (ya registrado arriba)
 
         // Registrar cliente de Telegram
-        var token = context.Configuration["Telegram:BotToken"] ?? Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN");
+        var token = Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN");
         if (string.IsNullOrEmpty(token))
         {
-            throw new InvalidOperationException("Token de Telegram no configurado. Establece Telegram:BotToken o la variable de entorno TELEGRAM_BOT_TOKEN.");
+            throw new InvalidOperationException("Token de Telegram no configurado. Establece la variable de entorno TELEGRAM_BOT_TOKEN.");
         }
 
         services.AddSingleton<ITelegramBotClient>(sp => new TelegramBotClient(token));

@@ -14,5 +14,14 @@ WORKDIR /app
 COPY --from=build /app/publish ./
 
 ENV DOTNET_RUNNING_IN_CONTAINER=true
+# Expect the following environment variables to be provided at runtime:
+# - TELEGRAM_BOT_TOKEN : token del bot de Telegram (required)
+# - DATABASE_CONN : cadena de conexión a la base de datos (required)
+# - DEEPSEEK_API_KEY : clave de API para Deepseek (required)
+
+# Add placeholder env vars so 'docker inspect' shows them and they are easier to override
+ENV TELEGRAM_BOT_TOKEN=""
+ENV DATABASE_CONN=""
+ENV DEEPSEEK_API_KEY=""
 
 ENTRYPOINT ["dotnet", "WebMonitorBot.dll"]

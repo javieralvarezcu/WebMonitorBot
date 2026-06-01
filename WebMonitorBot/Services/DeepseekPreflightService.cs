@@ -24,11 +24,10 @@ namespace WebMonitorBot.Services
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var apiKey = _configuration["Deepseek:ApiKey"] ?? Environment.GetEnvironmentVariable("DEEPSEEK_API_KEY");
+            var apiKey = Environment.GetEnvironmentVariable("DEEPSEEK_API_KEY") ?? _configuration["Deepseek:ApiKey"];
             if (string.IsNullOrEmpty(apiKey))
             {
-                _logger.LogError("Deepseek API key no encontrada en Deepseek:ApiKey ni DEEPSEEK_API_KEY. Cancelando arranque.");
-                // Parar la aplicación
+                _logger.LogError("Deepseek API key no encontrada. Establece la variable de entorno DEEPSEEK_API_KEY.");
                 _lifetime.StopApplication();
                 return;
             }

@@ -12,9 +12,10 @@ services:
     restart: unless-stopped
     environment:
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-      DEEPSEEK__APIURL: ${DEEPSEEK__APIURL:-https://api.deepseek.com/v1/chat}
-      DEEPSEEK__APIKEY: ${DEEPSEEK__APIKEY}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
+      DEEPSEEK__ApiUrl: ${DEEPSEEK__ApiUrl:-https://api.deepseek.com/v1/chat}
       DATABASE_CONN: ${DATABASE_CONN}
+      Monitoring__DefaultIntervalSeconds: ${Monitoring__DefaultIntervalSeconds:-300}
     networks:
       - webnet
     logging:

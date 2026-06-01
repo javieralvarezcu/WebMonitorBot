@@ -41,10 +41,10 @@ namespace WebMonitorBot.Bot
             // Register commands so Telegram shows them in the input field
             var commands = new[]
             {
-                new Telegram.Bot.Types.BotCommand { Command = "monitor", Description = "Registrar URL para monitoreo. Uso: /monitorear <url> [segundos]" },
+                new Telegram.Bot.Types.BotCommand { Command = "monitor", Description = "Registrar URL para monitoreo. Uso: /monitor <url> [segundos]" },
                 new Telegram.Bot.Types.BotCommand { Command = "setinterval", Description = "Actualizar intervalo de comprobación. Uso: /setinterval <url> <segundos>" },
                 new Telegram.Bot.Types.BotCommand { Command = "list", Description = "Listar las URLs registradas y su chat asociado" },
-                new Telegram.Bot.Types.BotCommand { Command = "remove", Description = "Eliminar una URL registrada. Uso: /eliminar <url>" },
+                new Telegram.Bot.Types.BotCommand { Command = "remove", Description = "Eliminar una URL registrada. Uso: /removee <url>" },
                 new Telegram.Bot.Types.BotCommand { Command = "help", Description = "Mostrar ayuda con los comandos disponibles" }
             };
 
